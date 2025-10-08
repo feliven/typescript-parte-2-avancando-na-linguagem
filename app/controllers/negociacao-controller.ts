@@ -26,22 +26,12 @@ export default class NegociacaoController {
     return this.listaNegociacoes;
   }
 
-  public criarNegociacao(): Negociacao {
-    const dataString: string = this.inputData.value;
-    const timestamp: number = Date.parse(dataString + " 00:00:00"); // corrige bug de data no JS
-    const data: Date = new Date(timestamp);
-
-    const quantidadeString: string = this.inputQuantidade.value;
-    const quantidade: number = +quantidadeString;
-
-    const valorString: string = this.inputValor.value;
-    const valor: number = +valorString;
-
-    return new Negociacao(data, quantidade, valor);
-  }
-
   public adicionarNegociacao(): void {
-    const negociacao: Negociacao = this.criarNegociacao();
+    const negociacao: Negociacao = Negociacao.criarNegociacao(
+      this.inputData.value,
+      this.inputQuantidade.value,
+      this.inputValor.value
+    );
     console.log(negociacao);
 
     if (this.checarSeEDiaUtil(negociacao.getData())) {

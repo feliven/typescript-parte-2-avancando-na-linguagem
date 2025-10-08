@@ -22,4 +22,15 @@ export default class Negociacao {
   getVolume(): number {
     return this.quantidade * this.valor;
   }
+
+  public static criarNegociacao(dataString: string, quantidadeString: string, valorString: string): Negociacao {
+    const timestamp: number = Date.parse(dataString + " 00:00:00"); // corrige bug de data no JS
+    const data: Date = new Date(timestamp);
+
+    const quantidade: number = +quantidadeString;
+
+    const valor: number = +valorString;
+
+    return new Negociacao(data, quantidade, valor);
+  }
 }

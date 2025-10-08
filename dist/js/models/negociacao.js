@@ -24,4 +24,11 @@ export default class Negociacao {
     getVolume() {
         return this.quantidade * this.valor;
     }
+    static criarNegociacao(dataString, quantidadeString, valorString) {
+        const timestamp = Date.parse(dataString + " 00:00:00"); // corrige bug de data no JS
+        const data = new Date(timestamp);
+        const quantidade = +quantidadeString;
+        const valor = +valorString;
+        return new Negociacao(data, quantidade, valor);
+    }
 }
