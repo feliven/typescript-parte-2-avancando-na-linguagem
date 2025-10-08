@@ -1,6 +1,6 @@
 import View from "./view.js";
 
-export default class MensagemView extends View {
+export default class MensagemView extends View<string> {
   gerarElemento(model: string): HTMLElement {
     const paragrafoMensagem: HTMLParagraphElement = document.createElement("p");
     paragrafoMensagem.classList.add("alert");

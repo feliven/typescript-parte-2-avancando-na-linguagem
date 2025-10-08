@@ -1,17 +1,15 @@
-import listaNegociacoes from "../models/lista-negociacoes";
-
-export default class View {
+export default class View<tipoGenerico> {
   protected elementoPagina: HTMLElement;
 
   constructor(seletor: string) {
     this.elementoPagina = document.querySelector(seletor);
   }
 
-  gerarElemento(model: string | listaNegociacoes): HTMLElement {
+  gerarElemento(model: tipoGenerico): HTMLElement {
     throw new Error("Classe filha precisa implementar método gerarElemento");
   }
 
-  atualizarNaPagina(model: string | listaNegociacoes): void {
+  atualizarNaPagina(model: tipoGenerico): void {
     const elementoAtualizado: HTMLElement = this.gerarElemento(model);
     console.log(elementoAtualizado);
     this.elementoPagina.innerHTML = "";
