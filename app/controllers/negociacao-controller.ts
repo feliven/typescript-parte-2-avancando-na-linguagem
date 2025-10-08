@@ -1,5 +1,6 @@
 import Negociacao from "../models/negociacao.js";
 import listaNegociacoes from "../models/lista-negociacoes.js";
+import NegociacoesView from "../views/negociacoes-view.js";
 
 export default class NegociacaoController {
   private inputData: HTMLInputElement;
@@ -7,10 +8,19 @@ export default class NegociacaoController {
   private inputValor: HTMLInputElement;
   private listaNegociacoes: listaNegociacoes = new listaNegociacoes();
 
+  private negociacoesView = new NegociacoesView("#negociacoesView");
+  // pega elemento HTML da página que vai receber tabela de transações
+
   constructor() {
     this.inputData = document.getElementById("data") as HTMLInputElement;
     this.inputQuantidade = document.getElementById("quantidade") as HTMLInputElement;
     this.inputValor = document.getElementById("valor") as HTMLInputElement;
+    this.negociacoesView.gerarTabelaTransacoes(this.listaNegociacoes);
+    this.negociacoesView.atualizarView(this.listaNegociacoes);
+  }
+
+  getListaNegociacoes() {
+    return this.listaNegociacoes;
   }
 
   criarNegociacao(): Negociacao {
@@ -36,12 +46,12 @@ export default class NegociacaoController {
 
   adicionarNegociacao(): void {
     const negociacao = this.criarNegociacao();
-    negociacao.getData().setDate(12);
     console.log(negociacao);
 
     this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);
-    // this.listaNegociacoes.listarNegociacoes().pop();
     console.log(this.listaNegociacoes);
+
+    this.negociacoesView.atualizarView(this.listaNegociacoes);
 
     this.limparFormulario();
   }
