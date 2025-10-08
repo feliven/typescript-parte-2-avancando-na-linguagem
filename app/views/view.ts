@@ -1,13 +1,11 @@
-export default class View<tipoGenerico> {
+export default abstract class View<tipoGenerico> {
   protected elementoPagina: HTMLElement;
 
   constructor(seletor: string) {
     this.elementoPagina = document.querySelector(seletor);
   }
 
-  gerarElemento(model: tipoGenerico): HTMLElement {
-    throw new Error("Classe filha precisa implementar método gerarElemento");
-  }
+  abstract gerarElemento(model: tipoGenerico): HTMLElement;
 
   atualizarNaPagina(model: tipoGenerico): void {
     const elementoAtualizado: HTMLElement = this.gerarElemento(model);
