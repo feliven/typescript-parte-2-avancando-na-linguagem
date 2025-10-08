@@ -8,7 +8,7 @@ export default class NegociacaoController {
     inputQuantidade;
     inputValor;
     listaNegociacoes = new listaNegociacoes();
-    negociacoesView = new NegociacoesView("#negociacoesView");
+    negociacoesView = new NegociacoesView("#negociacoesView", true);
     // pega elemento HTML da página que vai receber tabela de transações
     mensagemView = new MensagemView("#mensagemView");
     constructor() {
