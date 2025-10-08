@@ -1,9 +1,5 @@
-export default class NegociacoesView {
-    divNegociacoes;
-    constructor(seletor) {
-        this.divNegociacoes = document.querySelector(seletor);
-        // querySelector can return null. "!" is a non-null assertion because we're sure the element exists
-    }
+import View from "./view.js";
+export default class NegociacoesView extends View {
     gerarTabelaTransacoes(model) {
         const tabela = document.createElement("table");
         tabela.classList.add("table");
@@ -52,7 +48,7 @@ export default class NegociacoesView {
     atualizarView(model) {
         const tabelaGerada = this.gerarTabelaTransacoes(model);
         console.log(tabelaGerada);
-        this.divNegociacoes.innerHTML = "";
-        this.divNegociacoes.appendChild(tabelaGerada);
+        this.elementoPagina.innerHTML = "";
+        this.elementoPagina.appendChild(tabelaGerada);
     }
 }

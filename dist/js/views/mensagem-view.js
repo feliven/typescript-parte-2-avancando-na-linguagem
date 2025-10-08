@@ -1,8 +1,5 @@
-export default class MensagemView {
-    elementoPagina;
-    constructor(seletor) {
-        this.elementoPagina = document.querySelector(seletor);
-    }
+import View from "./view.js";
+export default class MensagemView extends View {
     gerarMensagem(model) {
         const paragrafoMensagem = document.createElement("p");
         paragrafoMensagem.classList.add("alert");

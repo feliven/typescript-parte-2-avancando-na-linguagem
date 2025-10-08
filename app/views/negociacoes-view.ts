@@ -1,14 +1,8 @@
 import listaNegociacoes from "../models/lista-negociacoes.js";
 import Negociacao from "../models/negociacao.js";
+import View from "./view.js";
 
-export default class NegociacoesView {
-  private divNegociacoes: HTMLElement;
-
-  constructor(seletor: string) {
-    this.divNegociacoes = document.querySelector(seletor)!;
-    // querySelector can return null. "!" is a non-null assertion because we're sure the element exists
-  }
-
+export default class NegociacoesView extends View {
   gerarTabelaTransacoes(model: listaNegociacoes): HTMLTableElement {
     const tabela: HTMLTableElement = document.createElement("table");
     tabela.classList.add("table");
@@ -72,7 +66,7 @@ export default class NegociacoesView {
   atualizarView(model: listaNegociacoes): void {
     const tabelaGerada: HTMLTableElement = this.gerarTabelaTransacoes(model);
     console.log(tabelaGerada);
-    this.divNegociacoes.innerHTML = "";
-    this.divNegociacoes.appendChild(tabelaGerada);
+    this.elementoPagina.innerHTML = "";
+    this.elementoPagina.appendChild(tabelaGerada);
   }
 }
