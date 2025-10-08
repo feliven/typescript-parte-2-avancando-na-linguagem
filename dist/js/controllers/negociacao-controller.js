@@ -1,6 +1,7 @@
 import Negociacao from "../models/negociacao.js";
 import listaNegociacoes from "../models/lista-negociacoes.js";
 import NegociacoesView from "../views/negociacoes-view.js";
+import MensagemView from "../views/mensagem-view.js";
 export default class NegociacaoController {
     inputData;
     inputQuantidade;
@@ -8,6 +9,7 @@ export default class NegociacaoController {
     listaNegociacoes = new listaNegociacoes();
     negociacoesView = new NegociacoesView("#negociacoesView");
     // pega elemento HTML da página que vai receber tabela de transações
+    mensagemView = new MensagemView("#mensagemView");
     constructor() {
         this.inputData = document.getElementById("data");
         this.inputQuantidade = document.getElementById("quantidade");
@@ -40,6 +42,7 @@ export default class NegociacaoController {
         this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);
         console.log(this.listaNegociacoes);
         this.negociacoesView.atualizarView(this.listaNegociacoes);
+        this.mensagemView.atualizarMensagem("Negociação adicionada com sucesso!");
         this.limparFormulario();
     }
 }

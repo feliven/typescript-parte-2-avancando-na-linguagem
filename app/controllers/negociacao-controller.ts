@@ -1,6 +1,7 @@
 import Negociacao from "../models/negociacao.js";
 import listaNegociacoes from "../models/lista-negociacoes.js";
 import NegociacoesView from "../views/negociacoes-view.js";
+import MensagemView from "../views/mensagem-view.js";
 
 export default class NegociacaoController {
   private inputData: HTMLInputElement;
@@ -10,6 +11,8 @@ export default class NegociacaoController {
 
   private negociacoesView = new NegociacoesView("#negociacoesView");
   // pega elemento HTML da página que vai receber tabela de transações
+
+  private mensagemView = new MensagemView("#mensagemView");
 
   constructor() {
     this.inputData = document.getElementById("data") as HTMLInputElement;
@@ -52,6 +55,8 @@ export default class NegociacaoController {
     console.log(this.listaNegociacoes);
 
     this.negociacoesView.atualizarView(this.listaNegociacoes);
+
+    this.mensagemView.atualizarMensagem("Negociação adicionada com sucesso!");
 
     this.limparFormulario();
   }
