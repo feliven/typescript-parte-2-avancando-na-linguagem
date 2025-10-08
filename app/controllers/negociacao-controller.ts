@@ -2,6 +2,7 @@ import Negociacao from "../models/negociacao.js";
 import listaNegociacoes from "../models/lista-negociacoes.js";
 import NegociacoesView from "../views/negociacoes-view.js";
 import MensagemView from "../views/mensagem-view.js";
+import DiasDaSemana from "../enums/dias-da-semana.js";
 
 export default class NegociacaoController {
   private inputData: HTMLInputElement;
@@ -57,7 +58,7 @@ export default class NegociacaoController {
   }
 
   private checarSeEDiaUtil(data: Date) {
-    return data.getDay() !== 0 && data.getDay() !== 6;
+    return data.getDay() !== DiasDaSemana.SABADO && data.getDay() !== DiasDaSemana.DOMINGO;
   }
 
   private limparFormulario(): void {
