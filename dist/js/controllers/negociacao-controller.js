@@ -29,19 +29,24 @@ export default class NegociacaoController {
         const valor = +valorString;
         return new Negociacao(data, quantidade, valor);
     }
+    adicionarNegociacao() {
+        const negociacao = this.criarNegociacao();
+        console.log(negociacao);
+        if (negociacao.getData().getDay() !== 0 && negociacao.getData().getDay() !== 6) {
+            this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);
+            console.log(this.listaNegociacoes);
+            this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
+            this.mensagemView.atualizarNaPagina("Negociação adicionada com sucesso!");
+            this.limparFormulario();
+        }
+        else {
+            this.mensagemView.atualizarNaPagina("Só aceitamos transações em dias de semana.");
+        }
+    }
     limparFormulario() {
         this.inputData.value = "";
         this.inputQuantidade.value = "";
         this.inputValor.value = "";
         this.inputData.focus();
-    }
-    adicionarNegociacao() {
-        const negociacao = this.criarNegociacao();
-        console.log(negociacao);
-        this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);
-        console.log(this.listaNegociacoes);
-        this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
-        this.mensagemView.atualizarNaPagina("Negociação adicionada com sucesso!");
-        this.limparFormulario();
     }
 }

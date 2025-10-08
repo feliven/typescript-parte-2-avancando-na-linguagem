@@ -21,11 +21,11 @@ export default class NegociacaoController {
     this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
   }
 
-  getListaNegociacoes(): listaNegociacoes {
+  public getListaNegociacoes(): listaNegociacoes {
     return this.listaNegociacoes;
   }
 
-  criarNegociacao(): Negociacao {
+  public criarNegociacao(): Negociacao {
     const dataString: string = this.inputData.value;
     const timestamp: number = Date.parse(dataString + " 00:00:00"); // corrige bug de data no JS
     const data: Date = new Date(timestamp);
@@ -39,24 +39,27 @@ export default class NegociacaoController {
     return new Negociacao(data, quantidade, valor);
   }
 
-  limparFormulario(): void {
+  public adicionarNegociacao(): void {
+    const negociacao: Negociacao = this.criarNegociacao();
+    console.log(negociacao);
+
+    if (negociacao.getData().getDay() !== 0 && negociacao.getData().getDay() !== 6) {
+      this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);
+      console.log(this.listaNegociacoes);
+
+      this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
+
+      this.mensagemView.atualizarNaPagina("Negociação adicionada com sucesso!");
+      this.limparFormulario();
+    } else {
+      this.mensagemView.atualizarNaPagina("Só aceitamos transações em dias de semana.");
+    }
+  }
+
+  private limparFormulario(): void {
     this.inputData.value = "";
     this.inputQuantidade.value = "";
     this.inputValor.value = "";
     this.inputData.focus();
-  }
-
-  adicionarNegociacao(): void {
-    const negociacao: Negociacao = this.criarNegociacao();
-    console.log(negociacao);
-
-    this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);
-    console.log(this.listaNegociacoes);
-
-    this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
-
-    this.mensagemView.atualizarNaPagina("Negociação adicionada com sucesso!");
-
-    this.limparFormulario();
   }
 }
