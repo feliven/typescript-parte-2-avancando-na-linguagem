@@ -19,7 +19,7 @@ export default class NegociacaoController {
     this.negociacoesView.atualizarView(this.listaNegociacoes);
   }
 
-  getListaNegociacoes() {
+  getListaNegociacoes(): listaNegociacoes {
     return this.listaNegociacoes;
   }
 
@@ -45,7 +45,7 @@ export default class NegociacaoController {
   }
 
   adicionarNegociacao(): void {
-    const negociacao = this.criarNegociacao();
+    const negociacao: Negociacao = this.criarNegociacao();
     console.log(negociacao);
 
     this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);

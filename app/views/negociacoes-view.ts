@@ -1,14 +1,16 @@
 import listaNegociacoes from "../models/lista-negociacoes.js";
+import Negociacao from "../models/negociacao.js";
 
 export default class NegociacoesView {
   private divNegociacoes: HTMLElement;
 
   constructor(seletor: string) {
-    this.divNegociacoes = document.querySelector(seletor);
+    this.divNegociacoes = document.querySelector(seletor)!;
+    // querySelector can return null. "!" is a non-null assertion because we're sure the element exists
   }
 
   gerarTabelaTransacoes(model: listaNegociacoes): HTMLTableElement {
-    const tabela = document.createElement("table");
+    const tabela: HTMLTableElement = document.createElement("table");
     tabela.classList.add("table");
     tabela.classList.add("table-hover");
     tabela.classList.add("table-bordered");
@@ -23,13 +25,13 @@ export default class NegociacoesView {
     </thead>`; */
 
     // monta thead da tabela
-    const cabecalho = ["DATA", "QUANTIDADE", "VALOR"];
+    const cabecalho: string[] = ["DATA", "QUANTIDADE", "VALOR"];
 
-    const thead = document.createElement("thead");
-    const linhaCabecalho = document.createElement("tr");
+    const thead: HTMLTableSectionElement = document.createElement("thead");
+    const linhaCabecalho: HTMLTableRowElement = document.createElement("tr");
 
-    cabecalho.map((item) => {
-      const itemCabecalho = document.createElement("th");
+    cabecalho.map((item: string) => {
+      const itemCabecalho: HTMLTableCellElement = document.createElement("th");
       itemCabecalho.textContent = item;
       linhaCabecalho.appendChild(itemCabecalho);
     });
@@ -37,20 +39,20 @@ export default class NegociacoesView {
     thead.appendChild(linhaCabecalho);
 
     // monta tbody da tabela
-    const tbody = document.createElement("tbody");
+    const tbody: HTMLTableSectionElement = document.createElement("tbody");
 
-    model.listarNegociacoes().map((negociacao) => {
-      const linhaNegociacao = document.createElement("tr");
+    model.listarNegociacoes().map((negociacao: Negociacao) => {
+      const linhaNegociacao: HTMLTableRowElement = document.createElement("tr");
 
-      const dataNegociacao = document.createElement("td");
-      const data = negociacao.getData();
-      const dataFormatada = new Intl.DateTimeFormat().format(data);
+      const dataNegociacao: HTMLTableCellElement = document.createElement("td");
+      const data: Date = negociacao.getData();
+      const dataFormatada: string = new Intl.DateTimeFormat().format(data);
       dataNegociacao.textContent = dataFormatada;
 
-      const qtdeNegociacao = document.createElement("td");
+      const qtdeNegociacao: HTMLTableCellElement = document.createElement("td");
       qtdeNegociacao.textContent = negociacao.getQuantidade().toString();
 
-      const valorNegociacao = document.createElement("td");
+      const valorNegociacao: HTMLTableCellElement = document.createElement("td");
       valorNegociacao.textContent = negociacao.getValor().toString();
 
       linhaNegociacao.appendChild(dataNegociacao);
@@ -68,7 +70,7 @@ export default class NegociacoesView {
   }
 
   atualizarView(model: listaNegociacoes): void {
-    const tabelaGerada = this.gerarTabelaTransacoes(model);
+    const tabelaGerada: HTMLTableElement = this.gerarTabelaTransacoes(model);
     console.log(tabelaGerada);
     this.divNegociacoes.innerHTML = "";
     this.divNegociacoes.appendChild(tabelaGerada);

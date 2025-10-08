@@ -2,6 +2,7 @@ export default class NegociacoesView {
     divNegociacoes;
     constructor(seletor) {
         this.divNegociacoes = document.querySelector(seletor);
+        // querySelector can return null. "!" is a non-null assertion because we're sure the element exists
     }
     gerarTabelaTransacoes(model) {
         const tabela = document.createElement("table");
