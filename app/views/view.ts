@@ -5,7 +5,7 @@ export default abstract class View<tipoGenerico> {
     this.elementoPagina = document.querySelector(seletor);
   }
 
-  abstract gerarElemento(model: tipoGenerico): HTMLElement;
+  protected abstract gerarElemento(model: tipoGenerico): HTMLElement;
 
   atualizarNaPagina(model: tipoGenerico): void {
     const elementoAtualizado: HTMLElement = this.gerarElemento(model);

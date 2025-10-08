@@ -3,7 +3,7 @@ import Negociacao from "../models/negociacao.js";
 import View from "./view.js";
 
 export default class NegociacoesView extends View<listaNegociacoes> {
-  gerarElemento(model: listaNegociacoes): HTMLElement {
+  protected gerarElemento(model: listaNegociacoes): HTMLElement {
     const tabela: HTMLTableElement = document.createElement("table");
     tabela.classList.add("table");
     tabela.classList.add("table-hover");

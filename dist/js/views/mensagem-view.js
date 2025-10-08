@@ -5,7 +5,6 @@ export default class MensagemView extends View {
         paragrafoMensagem.classList.add("alert");
         paragrafoMensagem.classList.add("alert-info");
         paragrafoMensagem.innerHTML = model;
-        // document.createElement(elem);
         return paragrafoMensagem;
     }
 }

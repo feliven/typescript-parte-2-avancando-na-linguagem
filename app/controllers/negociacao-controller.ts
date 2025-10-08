@@ -18,7 +18,6 @@ export default class NegociacaoController {
     this.inputData = document.getElementById("data") as HTMLInputElement;
     this.inputQuantidade = document.getElementById("quantidade") as HTMLInputElement;
     this.inputValor = document.getElementById("valor") as HTMLInputElement;
-    this.negociacoesView.gerarElemento(this.listaNegociacoes);
     this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
   }
 
