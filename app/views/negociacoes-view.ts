@@ -43,7 +43,9 @@ export default class NegociacoesView {
       const linhaNegociacao = document.createElement("tr");
 
       const dataNegociacao = document.createElement("td");
-      dataNegociacao.textContent = negociacao.getData().toString();
+      const data = negociacao.getData();
+      const dataFormatada = new Intl.DateTimeFormat().format(data);
+      dataNegociacao.textContent = dataFormatada;
 
       const qtdeNegociacao = document.createElement("td");
       qtdeNegociacao.textContent = negociacao.getQuantidade().toString();
