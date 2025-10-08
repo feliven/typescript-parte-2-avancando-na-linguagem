@@ -14,8 +14,8 @@ export default class NegociacaoController {
         this.inputData = document.getElementById("data");
         this.inputQuantidade = document.getElementById("quantidade");
         this.inputValor = document.getElementById("valor");
-        this.negociacoesView.gerarTabelaTransacoes(this.listaNegociacoes);
-        this.negociacoesView.atualizarView(this.listaNegociacoes);
+        this.negociacoesView.gerarElemento(this.listaNegociacoes);
+        this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
     }
     getListaNegociacoes() {
         return this.listaNegociacoes;
@@ -41,8 +41,8 @@ export default class NegociacaoController {
         console.log(negociacao);
         this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);
         console.log(this.listaNegociacoes);
-        this.negociacoesView.atualizarView(this.listaNegociacoes);
-        this.mensagemView.atualizarMensagem("Negociação adicionada com sucesso!");
+        this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
+        this.mensagemView.atualizarNaPagina("Negociação adicionada com sucesso!");
         this.limparFormulario();
     }
 }

@@ -1,18 +1,10 @@
 import View from "./view.js";
 export default class NegociacoesView extends View {
-    gerarTabelaTransacoes(model) {
+    gerarElemento(model) {
         const tabela = document.createElement("table");
         tabela.classList.add("table");
         tabela.classList.add("table-hover");
         tabela.classList.add("table-bordered");
-        /*     const thead: string = `
-        <thead>
-            <tr>
-                <th>DATA</th>
-                <th>QUANTIDADE</th>
-                <th>VALOR</th>
-            </tr>
-        </thead>`; */
         // monta thead da tabela
         const cabecalho = ["DATA", "QUANTIDADE", "VALOR"];
         const thead = document.createElement("thead");
@@ -44,11 +36,5 @@ export default class NegociacoesView extends View {
         tabela.appendChild(thead);
         tabela.appendChild(tbody);
         return tabela;
-    }
-    atualizarView(model) {
-        const tabelaGerada = this.gerarTabelaTransacoes(model);
-        console.log(tabelaGerada);
-        this.elementoPagina.innerHTML = "";
-        this.elementoPagina.appendChild(tabelaGerada);
     }
 }

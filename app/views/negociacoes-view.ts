@@ -3,20 +3,11 @@ import Negociacao from "../models/negociacao.js";
 import View from "./view.js";
 
 export default class NegociacoesView extends View {
-  gerarTabelaTransacoes(model: listaNegociacoes): HTMLTableElement {
+  gerarElemento(model: listaNegociacoes): HTMLElement {
     const tabela: HTMLTableElement = document.createElement("table");
     tabela.classList.add("table");
     tabela.classList.add("table-hover");
     tabela.classList.add("table-bordered");
-
-    /*     const thead: string = `
-    <thead>
-        <tr>
-            <th>DATA</th>
-            <th>QUANTIDADE</th>
-            <th>VALOR</th>
-        </tr>
-    </thead>`; */
 
     // monta thead da tabela
     const cabecalho: string[] = ["DATA", "QUANTIDADE", "VALOR"];
@@ -61,12 +52,5 @@ export default class NegociacoesView extends View {
     tabela.appendChild(tbody);
 
     return tabela;
-  }
-
-  atualizarView(model: listaNegociacoes): void {
-    const tabelaGerada: HTMLTableElement = this.gerarTabelaTransacoes(model);
-    console.log(tabelaGerada);
-    this.elementoPagina.innerHTML = "";
-    this.elementoPagina.appendChild(tabelaGerada);
   }
 }
