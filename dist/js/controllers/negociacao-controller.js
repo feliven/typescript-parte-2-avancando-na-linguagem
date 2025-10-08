@@ -32,7 +32,7 @@ export default class NegociacaoController {
     adicionarNegociacao() {
         const negociacao = this.criarNegociacao();
         console.log(negociacao);
-        if (negociacao.getData().getDay() !== 0 && negociacao.getData().getDay() !== 6) {
+        if (this.checarSeEDiaUtil(negociacao.getData())) {
             this.listaNegociacoes.adicionarNaListaNegociacoes(negociacao);
             console.log(this.listaNegociacoes);
             this.negociacoesView.atualizarNaPagina(this.listaNegociacoes);
@@ -42,6 +42,9 @@ export default class NegociacaoController {
         else {
             this.mensagemView.atualizarNaPagina("Só aceitamos transações em dias de semana.");
         }
+    }
+    checarSeEDiaUtil(data) {
+        return data.getDay() !== 0 && data.getDay() !== 6;
     }
     limparFormulario() {
         this.inputData.value = "";
