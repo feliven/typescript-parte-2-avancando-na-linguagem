@@ -13,7 +13,6 @@ export default class Negociacao {
     getData() {
         const getData = new Date(this.data);
         return getData;
-        // para não poder modificar a data que está armazenada dentro da modelagem de negociação
     }
     getQuantidade() {
         return this.quantidade;
@@ -25,7 +24,7 @@ export default class Negociacao {
         return this.quantidade * this.valor;
     }
     static criarNegociacao(dataString, quantidadeString, valorString) {
-        const timestamp = Date.parse(dataString + " 00:00:00"); // corrige bug de data no JS
+        const timestamp = Date.parse(dataString + " 00:00:00");
         const data = new Date(timestamp);
         const quantidade = +quantidadeString;
         const valor = +valorString;

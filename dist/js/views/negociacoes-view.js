@@ -5,7 +5,6 @@ export default class NegociacoesView extends View {
         tabela.classList.add("table");
         tabela.classList.add("table-hover");
         tabela.classList.add("table-bordered");
-        // monta thead da tabela
         const cabecalho = ["DATA", "QUANTIDADE", "VALOR"];
         const thead = document.createElement("thead");
         const linhaCabecalho = document.createElement("tr");
@@ -15,7 +14,6 @@ export default class NegociacoesView extends View {
             linhaCabecalho.appendChild(itemCabecalho);
         });
         thead.appendChild(linhaCabecalho);
-        // monta tbody da tabela
         const tbody = document.createElement("tbody");
         model.listarNegociacoes().map((negociacao) => {
             const linhaNegociacao = document.createElement("tr");
@@ -32,7 +30,6 @@ export default class NegociacoesView extends View {
             linhaNegociacao.appendChild(valorNegociacao);
             tbody.appendChild(linhaNegociacao);
         });
-        // monta tabela
         tabela.appendChild(thead);
         tabela.appendChild(tbody);
         return tabela;

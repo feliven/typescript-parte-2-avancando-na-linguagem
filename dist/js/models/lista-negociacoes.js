@@ -5,6 +5,5 @@ export default class listaNegociacoes {
     }
     listarNegociacoes() {
         return this.listaNegociacoes;
-        // "..." é o Spread Operator: ele pega cada item desse array individualmente e coloca em uma nova lista
     }
 }

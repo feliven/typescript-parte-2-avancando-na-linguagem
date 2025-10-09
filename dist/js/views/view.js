@@ -2,14 +2,19 @@ export default class View {
     elementoPagina;
     escapar = false;
     constructor(seletor, escapar) {
-        this.elementoPagina = document.querySelector(seletor);
+        const elementoSelecionado = document.querySelector(seletor);
+        if (elementoSelecionado) {
+            this.elementoPagina = elementoSelecionado;
+        }
+        else {
+            throw new Error(`Não foi possível encontrar o elemento ${seletor} na página.`);
+        }
         if (escapar) {
             this.escapar = escapar;
         }
     }
     atualizarNaPagina(model) {
         let elementoPagina = this.gerarElemento(model);
-        // protege contra ataque que usa <script> em campos do formulário
         if (this.escapar) {
             elementoPagina.innerHTML = elementoPagina.innerHTML.replace(/<script\b[^<]*(?:(?!\/script>)<[^<]*)*<\/script>/gi, "");
         }
